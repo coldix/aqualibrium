@@ -1,0 +1,913 @@
+/*
+Website: https://aqualibrium.oze.au/
+Author: Colin Dixon
+Version: 26.03.008
+Date: Thursday, 19/03/2026 | 12:28 AM AEDT
+Description: OzeGlass CSS styling for Aqualibrium Ocean Adventures
+*/
+
+/* -------------------------------------------------------------------------- */
+/* Variables & Theme */
+/* -------------------------------------------------------------------------- */
+:root {
+    /* Default Light Theme */
+    --bg-color: #f0f7f9;
+    --text-color: #1e293b;
+    --text-muted: #64748b;
+    --accent-color: #0284c7; /* Ocean Blue */
+    --accent-hover: #0369a1;
+    --border-color: rgba(15, 23, 42, 0.1);
+    
+    /* OzeGlass Variables */
+    --glass-bg: rgba(255, 255, 255, 0.5); /* 50% transparency */
+    --glass-shadow: 0 4px 16px 0 rgba(2, 132, 199, 0.1); /* subtle shadow */
+    --glass-border: 1px solid rgba(255, 255, 255, 0.3); /* subtle border */
+    
+    /* Layout & Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --border-radius: 16px;
+    --container-width: 1100px;
+
+    /* Theme Overlays */
+    --overlay-color: rgba(6, 15, 25, 0.6);
+}
+
+html[data-theme="dark"] {
+    /* Dark Theme */
+    --bg-color: #0c1520; /* Deep Ocean Dark */
+    --text-color: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-color: #38bdf8;
+    --accent-hover: #7dd3fc;
+    --border-color: rgba(255, 255, 255, 0.1);
+    
+    /* OzeGlass Dark Variables */
+    --glass-bg: rgba(15, 23, 42, 0.5); /* 50% transparency */
+    --glass-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2); /* subtle shadow */
+    --glass-border: 1px solid rgba(255, 255, 255, 0.05); /* subtle border */
+
+    --overlay-color: rgba(4, 10, 18, 0.7);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Reset & Base Styling */
+/* -------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-color);
+    background-image: url('../images/beachback.webp'); /* heavy gradient removed */
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+html[data-theme="dark"] body {
+    background-image: linear-gradient(to bottom, rgba(12, 21, 32, 0.3), rgba(12, 21, 32, 0.4)), url('../images/beachback.webp'); /* sharply reduced tint */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover, a:focus {
+    color: var(--accent-hover);
+}
+
+h1, h2, h3, h4 {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+    color: var(--text-color);
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+strong {
+    font-weight: 600;
+}
+
+/* Utility Classes */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+.section {
+    padding: var(--spacing-lg) 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.emphasis-line {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-top: var(--spacing-sm);
+}
+
+.relative-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Components */
+/* -------------------------------------------------------------------------- */
+
+/* Glass Card */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Media Specific Overrides */
+.tour-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.tour-media {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background-color: var(--border-color); /* Fallback */
+}
+
+.tour-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+
+
+.about-card {
+    overflow: hidden;
+}
+
+.about-card-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.about-media {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+    .about-card-inner {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .about-media {
+        flex: 0 0 40%;
+        max-width: 400px;
+    }
+    
+    .about-content {
+        flex: 1;
+    }
+}
+
+.about-media img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: calc(var(--border-radius) / 2);
+}
+
+.primary-mandy-image {
+    aspect-ratio: 4/3;
+}
+
+.secondary-mandy-image {
+    aspect-ratio: 1/1; /* Updated to square */
+}
+
+/* Image Backgrounds & Overlays */
+.hero-background {
+    background-image: url('../images/Aqualibrium-2.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden; /* Added to clip video properly */
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.background-cta {
+    background-image: url('../images/Contact-Aqualibrium.webp');
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    position: relative;
+    /* Extra padding for visual weight */
+    padding: calc(var(--spacing-lg) * 1.5) 0;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--overlay-color);
+    z-index: 1;
+}
+
+/* Reduce hero overlay so video is fully visible */
+.hero-background .image-overlay {
+    background-color: rgba(6, 15, 25, 0.1); /* Very light overlay just for minimal text protection */
+}
+
+html[data-theme="dark"] .hero-background .image-overlay {
+    background-color: rgba(4, 10, 18, 0.2);
+}
+
+/* Ensure glass cards pop but maintain high transparency on hero */
+.hero-background .glass-card {
+    background: rgba(255, 255, 255, 0.35); /* Increased card transparency */
+}
+
+html[data-theme="dark"] .hero-background .glass-card {
+    background: rgba(15, 23, 42, 0.35);
+}
+
+.background-cta .glass-card {
+    background: var(--glass-bg);
+}
+
+html[data-theme="dark"] .background-cta .glass-card {
+    background: var(--glass-bg);
+}
+
+
+/* Buttons */
+.button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.button:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+}
+
+.button-primary {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 4px 14px 0 rgba(2, 132, 199, 0.3);
+}
+
+html[data-theme="dark"] .button-primary {
+    color: #0c1520;
+}
+
+.button-primary:hover {
+    background-color: var(--accent-hover);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px 0 rgba(2, 132, 199, 0.4);
+}
+
+.button-secondary {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
+}
+
+/* On dark overlays (like hero text which is inside a glass card anyway context), 
+we don't strictly need to force white text unless it sits outside the card.
+The glass card ensures the text uses var(--text-color). */
+
+.button-secondary:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+/* Lists */
+.feature-list {
+    list-style: none;
+    margin-bottom: var(--spacing-sm);
+}
+
+.feature-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature-list li::before {
+    content: "•";
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+    font-size: 1.25rem;
+    line-height: 1;
+    top: 0.1rem;
+}
+
+.inline-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+}
+
+.inline-list li {
+    padding-left: 0;
+}
+
+.inline-list li::before {
+    content: none;
+}
+.inline-list li {
+    background: rgba(2, 132, 199, 0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Layout Segments */
+/* -------------------------------------------------------------------------- */
+
+/* Header & Nav */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: var(--glass-border);
+    padding: var(--spacing-sm) 0;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+
+.site-logo {
+    height: 48px;
+    width: auto;
+}
+
+html[data-theme="dark"] .site-logo {
+    filter: brightness(1.2);
+}
+
+.site-nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.site-nav a {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+    color: var(--accent-color);
+}
+
+.site-nav a:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.theme-toggle:hover {
+    background-color: var(--border-color);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+    border-radius: 50%;
+}
+
+html[data-theme="dark"] .light-icon { display: none; }
+html[data-theme="light"] .dark-icon { display: none; }
+
+/* Hero */
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--spacing-lg);
+}
+
+.hero-content {
+    max-width: 640px;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.hero .tagline {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.hero .supporting-text {
+    font-size: 1.125rem;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+    max-width: 90%;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+/* Grids */
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+}
+
+.item-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Step Grid */
+.step-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    counter-reset: steps;
+}
+
+.step-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.step-card .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--accent-color);
+    color: #fff;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+html[data-theme="dark"] .step-card .step-number {
+    color: #0c1520;
+}
+
+/* Tours */
+.tour-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-sm);
+}
+
+.tour-header {
+    background: rgba(2, 132, 199, 0.1);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tour-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.tour-label {
+    background: var(--accent-color);
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+html[data-theme="dark"] .tour-label {
+    color: #0c1520;
+}
+
+.tour-body {
+    padding: var(--spacing-md);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+}
+
+@media (min-width: 800px) {
+    .tour-body {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.tour-overview {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.tour-list {
+    list-style: none;
+    margin-bottom: var(--spacing-md);
+}
+
+.tour-list li {
+    padding: 0.3rem 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.tour-list li:last-child {
+    border-bottom: none;
+}
+
+.tour-note {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+}
+
+/* Pricing Block */
+.pricing-block {
+    background: rgba(2, 132, 199, 0.05);
+    padding: var(--spacing-sm);
+    border-radius: 12px;
+}
+
+.pricing-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.pricing-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 500;
+}
+
+.pricing-row:last-child {
+    border-bottom: none;
+}
+
+.pricing-row span:last-child {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* Section Title Card for layout grids */
+.section-title-card {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.section-title-card h2 {
+    margin-bottom: 0;
+}
+
+/* Coming Soon Media */
+.coming-soon-media {
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+    border-radius: calc(var(--border-radius) / 2);
+    overflow: hidden;
+}
+
+.coming-soon-media img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+/* Teaser / Coming Soon */
+.teaser-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.teaser-header h3 {
+    margin: 0;
+}
+
+.badge {
+    background: var(--text-color);
+    color: var(--bg-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Booking Form */
+.booking-form {
+    display: grid;
+    gap: var(--spacing-sm);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.form-actions {
+    margin-top: var(--spacing-sm);
+}
+
+.form-actions .button {
+    width: 100%;
+}
+
+/* Contact Details */
+.contact-list {
+    list-style: none;
+}
+
+.contact-list li {
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.1rem;
+}
+
+/* Final CTA Section */
+.cta-block {
+    padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.cta-actions {
+    margin-top: var(--spacing-md);
+    display: flex;
+    justify-content: center;
+}
+
+/* Footer */
+.site-footer {
+    padding: var(--spacing-md) 0;
+    border-top: var(--glass-border);
+    background: var(--glass-bg);
+}
+
+.footer-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.footer-links a {
+    color: var(--text-color);
+    margin-left: 1rem;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.site-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: var(--spacing-md);
+    text-align: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Responsive Adjustments */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    :root {
+        --spacing-lg: 3rem;
+    }
+    
+    .header-inner {
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .site-nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
+    
+    .site-nav ul {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 4px;
+    }
+    
+    .site-nav a {
+        white-space: nowrap;
+    }
+    
+    .theme-toggle {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+    }
+    
+    .hero {
+        min-height: 70vh;
+        text-align: center;
+    }
+    
+    .hero-content {
+        margin: 0 auto;
+        padding: var(--spacing-sm);
+    }
+    
+    .hero .supporting-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .footer-layout {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links a {
+        margin: 0 0.5rem;
+    }
+
+    /* Adjust media heights for mobile */
+    .tour-media {
+        height: 200px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .form-actions .button {
+        width: auto;
+    }
+    
+    .tour-media {
+        height: 350px;
+    }
+}
