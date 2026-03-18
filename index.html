@@ -143,13 +143,16 @@
                             </div>
                             
                             <div class="pricing-block">
-                                <h4>Pricing</h4>
+                                <h4>Pricing <span class="pricing-clarity">(per person)</span></h4>
                                 <div class="pricing-table">
                                     <div class="pricing-row"><span>2 people</span><span>$520</span></div>
                                     <div class="pricing-row"><span>3 people</span><span>$395</span></div>
                                     <div class="pricing-row"><span>4 people</span><span>$320</span></div>
                                     <div class="pricing-row"><span>5 people</span><span>$275</span></div>
                                     <div class="pricing-row"><span>6 people</span><span>$240</span></div>
+                                </div>
+                                <div style="margin-top: var(--spacing-sm);">
+                                    <a href="#booking" class="button button-primary" style="width: 100%; text-align: center;">Book Now</a>
                                 </div>
                             </div>
                         </div>
@@ -187,13 +190,16 @@
                             </div>
                             
                             <div class="pricing-block">
-                                <h4>Pricing</h4>
+                                <h4>Pricing <span class="pricing-clarity">(per person)</span></h4>
                                 <div class="pricing-table">
                                     <div class="pricing-row"><span>2 people</span><span>$420</span></div>
                                     <div class="pricing-row"><span>3 people</span><span>$310</span></div>
                                     <div class="pricing-row"><span>4 people</span><span>$260</span></div>
                                     <div class="pricing-row"><span>5 people</span><span>$225</span></div>
                                     <div class="pricing-row"><span>6 people</span><span>$195</span></div>
+                                </div>
+                                <div style="margin-top: var(--spacing-sm);">
+                                    <a href="#booking" class="button button-primary" style="width: 100%; text-align: center;">Book Now</a>
                                 </div>
                             </div>
                         </div>
@@ -235,6 +241,9 @@
                                     <div class="pricing-row"><span>4 people</span><span>$200</span></div>
                                     <div class="pricing-row"><span>5 people</span><span>$170</span></div>
                                     <div class="pricing-row"><span>6 people</span><span>$150</span></div>
+                                </div>
+                                <div style="margin-top: var(--spacing-sm);">
+                                    <a href="#booking" class="button button-primary" style="width: 100%; text-align: center;">Book Now</a>
                                 </div>
                             </div>
                         </div>
@@ -408,49 +417,69 @@
                 <div class="glass-card booking-container">
                     <h2>Request a Booking</h2>
                     <p>Ready to get on the water? Fill out the details below and we'll check the conditions for your preferred date.</p>
-                    <form id="booking-form" class="booking-form" action="#" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                    <form id="booking-form" class="booking-form">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" required>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tour">Preferred Tour</label>
+                                <select id="tour" name="tour" required>
+                                    <option value="" disabled selected>Select a tour</option>
+                                    <option value="kayak_snorkel">1. Signature Water Journey</option>
+                                    <option value="ebike_swim">2. Coastal Ride & Dip</option>
+                                    <option value="easy_water">3. Easy Water Experience</option>
+                                </select>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="tour">Preferred Tour</label>
-                            <select id="tour" name="tour" required>
-                                <option value="" disabled selected>Select a tour</option>
-                                <option value="kayak_snorkel">1. Signature Water Journey</option>
-                                <option value="ebike_swim">2. Coastal Ride & Dip</option>
-                                <option value="easy_water">3. Easy Water Experience</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="group-size">Group Size</label>
-                            <input type="number" id="group-size" name="group-size" min="1" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="date">Preferred Date</label>
-                            <input type="date" id="date" name="date" required>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="group-size">Group Size</label>
+                                <input type="number" id="group-size" name="group_size" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="preferred-date">Preferred Date</label>
+                                <input type="date" id="preferred-date" name="preferred_date" required>
+                            </div>
                         </div>
                         
                         <div class="form-group">
                             <label for="notes">Notes / Questions</label>
                             <textarea id="notes" name="notes" rows="4"></textarea>
                         </div>
+
+                        <!-- Pricing Summary Block -->
+                        <div class="pricing-summary-block glass-card">
+                            <div id="pricing-neutral" class="pricing-message">Select a tour and group size to see pricing</div>
+                            <div id="pricing-invalid" class="pricing-message hidden" style="color: #e63946;">This group size is not available for the selected tour</div>
+                            <div id="pricing-details" class="pricing-details hidden">
+                                <div class="summary-row"><span>Price per person:</span> <strong id="summary-pp">$0</strong></div>
+                                <div class="summary-row"><span>Group size:</span> <strong id="summary-size">0</strong></div>
+                                <hr>
+                                <div class="summary-row total-row"><span>Estimated total:</span> <strong id="summary-total">$0</strong></div>
+                            </div>
+                            <!-- Hidden inputs to submit calculated values with form -->
+                            <input type="hidden" id="form-price-pp" name="price_per_person" value="">
+                            <input type="hidden" id="form-price-total" name="estimated_total" value="">
+                        </div>
                         
-                        <div class="form-actions">
-                            <button type="submit" class="button button-primary">Send Booking Request</button>
+                        <div class="form-actions" style="text-align: center;">
+                            <button type="submit" class="button button-primary window-scroll-trigger">Prepare Booking Email</button>
+                            <p class="form-note" style="font-size: 0.85rem; opacity: 0.8; margin-top: var(--spacing-sm);">This will open your email app with your booking details pre-filled.</p>
                         </div>
                     </form>
                 </div>

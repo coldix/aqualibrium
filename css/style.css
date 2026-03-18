@@ -685,6 +685,68 @@ html[data-theme="dark"] .tour-label {
     font-weight: 700;
 }
 
+/* Pricing Clarity */
+.pricing-clarity {
+    font-size: 0.85em;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* Booking Form Desktop Layout */
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+    .form-row {
+        flex-direction: row;
+    }
+    .form-row .form-group {
+        flex: 1;
+    }
+}
+
+/* Pricing Summary Block */
+.pricing-summary-block {
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(2, 132, 199, 0.05); /* very light subtle tint */
+    border: 1px solid var(--border-color);
+}
+
+html[data-theme="dark"] .pricing-summary-block {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.total-row {
+    font-size: 1.125rem;
+    color: var(--accent-color);
+}
+
+.pricing-message {
+    text-align: center;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.pricing-summary-block hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 0.75rem 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
 /* Section Title Card for layout grids */
 .section-title-card {
     margin-bottom: var(--spacing-md);
